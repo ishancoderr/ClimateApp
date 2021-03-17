@@ -1,0 +1,111 @@
+{%extends 'index.html'%}
+
+{%block content%}
+     <h1>Welcome,{{user.username}}</h1>
+     <center>
+     <form action="geodata" method="post">
+          {%csrf_token %}
+          
+          <b>Longitude</b>:<input type="text" name="lon">
+          <b>Latitude</b>:<input type="text" name="lat">
+          <button type="submit" >Search</button>
+     </form>
+     
+     
+          <h5>Searched Longitude : {{lon}}</h5>
+     <h5>Searched Latitude : {{lat}}</h5>
+     
+  
+     <style>   
+          table {
+               font-family: arial, sans-serif;
+               border-collapse: collapse;
+               width:80%;
+             }
+
+             td, th {
+               border: 1px solid #dddddd;
+               text-align: left;
+               padding: 8px;
+             }
+             
+             tr:nth-child(even) {
+               background-color: #dddddd;
+             }
+     </style>
+     
+     <table>
+          <tr>
+            <th>Detail</th>
+            <th>Value</th>
+          </tr>
+          <tr>
+            <td>Temperature</td>
+            <td>{{data_exp.temp}}</td>
+          </tr>
+          <tr>
+            <td>wind_speed</td>
+            <td>{{data_exp.wind}}</td>
+          </tr>
+          <tr>
+            <td>latitude</td>
+            <td>{{data_exp.latitude}}</td>
+          </tr>
+          <tr>
+               <td>longitude</td>
+               <td>{{data_exp.longitude}}</td>
+             </tr>
+          <tr>
+            <td>pressure </td>
+            <td>{{data_exp.pressure}}</td>
+          </tr>
+          <tr>
+            <td>humidity</td>
+            <td>{{data_exp.humidity}}</td>
+          </tr>
+     
+        </table><br><br>
+        <h1>NEXT THREE DAY DATA</h1>
+        <table><br><br>
+          <tr>
+            <th>Detail</th>
+            <th>Value</th>
+          </tr>
+          <tr>
+            <td>Temperature</td>
+            <td>{{data_exp2.temp}}</td>
+          </tr>
+          <tr>
+            <td>wind_speed</td>
+            <td>{{data_exp2.wind}}</td>
+          </tr>
+          <tr>
+            <td>latitude</td>
+            <td>{{data_exp2.latitude}}</td>
+          </tr>
+          <tr>
+               <td>longitude</td>
+               <td>{{data_exp2.longitude}}</td>
+             </tr>
+          <tr>
+            <td>pressure </td>
+            <td>{{data_exp2.pressure}}</td>
+          </tr>
+          <tr>
+            <td>humidity</td>
+            <td>{{data_exp2.humidity}}</td>
+          </tr>
+     
+        </table><br><br>
+        <form class="" action="getmore" method="POST">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <input type="Submit" name="submit" value="GET MORE DATA"/>
+     </form>       
+     </center>
+
+
+
+     
+     
+{%endblock%}
